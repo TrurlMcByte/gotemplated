@@ -1,5 +1,7 @@
 # gotemplated
 Go based "templated" tools
+Generate config files (but not only) from templates (include url) and json data sources (etcd, firebase, webdis, etc...)
+
 
 # build
 go build
