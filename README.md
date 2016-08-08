@@ -4,7 +4,9 @@ Generate config files (but not only) from templates (include url) and json data 
 
 
 # build
-go build
+for static build
+go get github.com/imdario/mergo
+CGO_ENABLED=0  go build -ldflags "-s"
 
 # manual
 all parametrs may be called multiple times and user in order of presense
