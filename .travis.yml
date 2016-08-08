@@ -1,0 +1,9 @@
+language: go
+go:
+  - 1.5
+  - 1.6
+before_script:
+  - go get github.com/imdario/mergo
+script:
+  - CGO_ENABLED=0 go build -ldflags "-s"
+
