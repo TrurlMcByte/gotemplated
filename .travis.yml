@@ -1,9 +1,16 @@
 language: go
 go:
-  - 1.5
-  - 1.6
+- 1.5
+- 1.6
 before_script:
-  - go get github.com/imdario/mergo
+- go get github.com/imdario/mergo
 script:
-  - CGO_ENABLED=0 go build -ldflags "-s"
-
+- CGO_ENABLED=0 go build -ldflags "-s"
+deploy:
+  provider: releases
+  api_key:
+    secure: q+ibYIpKptOmhuIK/TF7bsGp7NgnIkHtXmTTcncMWhZ+H9NLNPNmHOH24Vx7gdb40sqgobxILuXZbklZElTdF3qWVhyLQHaUzrnaP3+Jgrrza15CJb0+vRBUTyY3uGg1tG2Jq583E4a/aNCCA+BthkhwFDmQUIVEziBzOln58H6iHLXV7wuYdRfat90yLeL9wIP6aRAoIzzODRKzzGq2h0qzgQ5SIiVOuBLP6rlDEQwCUg+kVd8qzSYE8Bm/NTukJ7M+O/KNbF+grzXBCa08StTZ1Koo5FHGiNdEj62cx8EL3D7MxG6lDAS7XUMQMrgUhhchcdpOfy9aa/EEioM4g0RdLVzgMTN8/M3o9rrc6NfV/CBjNGflFXBBA7IqsPO2KrjCY14yy6fusFh2d34GnwkuQGShJxf2i/3JWIPY2086nX4yiot48/hLjMjzx3xWDsFluleyFJLpbb75VlRZMcRYMzEOXlHUQzfXvqZVkun6qoNQTiMTC4b3vTe2BVKSsD2+MvpqEl8fEloQdqWN/6D1fBvLZ0Kdc5ZU+PvG3mV7c0NMj6MoW1Q/Mf7OS+l2Ekh8OXLnO2W2t69IqTQnRgI3dBr4+jfAFPZ/x55XWieQfdllSlL5IZhc2k9bQJh5vvZtp4ZVvwCklkkIy7gWjHM2DQQrfQJicdZV0lg6f9g=
+  file: gotemplated
+  skip_cleanup: true
+  on:
+    tags: true
