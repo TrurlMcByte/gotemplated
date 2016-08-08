@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/TrurlMcByte/gotemplated.svg?branch=master)](https://travis-ci.org/TrurlMcByte/gotemplated)
+
 # gotemplated
 Go based "templated" tools
 Generate config files (but not only) from templates (include url) and json data sources (etcd, firebase, webdis, etc...)
