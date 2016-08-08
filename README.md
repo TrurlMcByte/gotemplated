@@ -4,6 +4,8 @@
 Go based "templated" tools
 Generate config files (but not only) from templates (include url) and json data sources (etcd, firebase, webdis, etc...)
 
+# get
+TravisCI static builds available on https://github.com/TrurlMcByte/gotemplated/releases
 
 # build
 for static build
