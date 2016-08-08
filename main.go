@@ -165,6 +165,9 @@ func main() {
             conf1 := LoadJSON_string(os.Args[a])
             err = mergo.Merge(&conf, conf1)
             check(err)
+        } else if(os.Args[a] == "--print") {
+            a += 1
+            log.Println(os.Args[a])
         } else if(os.Args[a] == "--jfile") {
             a += 1
             conf1 := LoadJSON_file(os.Args[a])
