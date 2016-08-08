@@ -5,7 +5,7 @@ Go based "templated" tools
 Generate config files (but not only) from templates (include url) and json data sources (etcd, firebase, webdis, etc...)
 
 # get
-TravisCI static builds available on https://github.com/TrurlMcByte/gotemplated/releases
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped available from TravisCI builds on page https://github.com/TrurlMcByte/gotemplated/releases
 
 # build
 for static build
