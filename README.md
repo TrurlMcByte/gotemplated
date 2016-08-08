@@ -26,6 +26,8 @@ all parametrs may be called multiple times and user in order of presense
     --gid {GID}         default group (gid) for created files (int)
     --ofile {FILE}      execute last template and write result to file (also create path if not exists)
 ```
+see also https://golang.org/pkg/text/template/ for templates
+
 
 # usage
 ```
