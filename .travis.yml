@@ -4,7 +4,7 @@ go:
 before_script:
 - go get github.com/imdario/mergo
 script:
-- CGO_ENABLED=0 go build -ldflags "-s" && GOOS=windows GOARCH=amd64 go build
+- CGO_ENABLED=0 go build -ldflags "-s" && GOOS=windows GOARCH=amd64 go build && ls -la
 deploy:
   provider: releases
   api_key:
