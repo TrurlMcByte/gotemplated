@@ -10,8 +10,8 @@ deploy:
   api_key:
     secure: o9rVpi3y/XW5LJNTmpkVRDQB5fTWSeFaRHbzelqhNUqrxs6caczc+Yt3BZsoOzNmbF9xAYX8HOz2LWF7+yLsyLq+VmPzh+9iSlYQBv8tKBJRG1yS1dO1RyCFfO8ebI2QSYUPRwPxSmM7HqOHmM2xoh7R9cCo61FQ2mXGpH4Sgb4/xLwbNp+hKAeQEHXPXTiAbeGkHfKfQs6OyDJZLXkYBZcH6OhArlHFkGFg+j4+qBQtzS8YKORUzzAB/lHf23OCx0urJKukwQc62SZvOZhArfhkf2yVrx6zCIeqxtbauuAW96FAlW8+Goi+Y1hVCm6EQ+/RfD7RX8ciH9Ceah9YZgz+SRTjPJulyC5dRBsRtgGtljfKJaHlkiMH+wi1GEBIfkS7WOYideR7J8HooQccnKEY9Wp4JBQnhDBYH6+J5BxlPPvDyZ6/m2f4eIYW1/yTAKxxhFAg8yAR9f6goXrdI/nTvKsCJp9F9b4W+Sp1Ko5AGueV/EeT/6c4LyIahE80+jB7PqKHpFPbuPy/doY7T9zs4QFmrLrG01urggsjTdyfZnUzwSZK7uEZEvf+z5Q1Q+cVy8kc7l3KpbazXOM4TzUaaAd2sVncl08Pg1sms/tcSxiiCnaani3bHC8NXBW04pzqKDVpdh3Y6AkVEj5ZuWatXyrIrnWRClBF4k1yVL8=
   file:
-    - gotamplated
-    - gotamplated.exe
+    - gotemplated
+    - gotemplated.exe
   overwrite: true
   skip_cleanup: true
   on:
