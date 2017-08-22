@@ -59,7 +59,13 @@ see also https://golang.org/pkg/text/template/ for templates
 ```
 gotemplated.exe --jstr "{\"hostname\":\"myhost.example.org\"}" --tfile some.tpl --ofile some.conf
 ```
-where some.tpl containts
+where ```some.tpl``` containts
 ```
-hostname = {{ .hostname }}
+hostname = "{{ .hostname }}"
 ```
+in result in file ```some.conf``` will be
+```
+hostname = "myhost.example.org"
+```
+
+
