@@ -54,3 +54,12 @@ see also https://golang.org/pkg/text/template/ for templates
     --ofile /tmp/data/test2.res
 ```
 
+# example
+
+```
+gotemplated.exe --jstr "{\"hostname\":\"myhost.example.org\"}" --tfile some.tpl --ofile some.conf
+```
+where some.tpl containts
+```
+hostname = {{ .hostname }}
+```
