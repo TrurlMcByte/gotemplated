@@ -27,6 +27,14 @@ all parametrs may be called multiple times and user in order of presense
     --uid {UID}         default owner (uid) for created files (int)
     --gid {GID}         default group (gid) for created files (int)
     --ofile {FILE}      execute last template and write result to file (also create path if not exists)
+    --jmap {STRING}     map next loaded json string/file/url to subject, empty string reset mapping
+    --print {ARG}       print argument (for debug)
+    --printconf         print all collected data (for debug)
+
+    Additional template funtions:
+      is_map {variable}                 return true if variable is map
+      map_have {variable} "string"      return true if variable have field "string"
+
 ```
 see also https://golang.org/pkg/text/template/ for templates
 
