@@ -5,6 +5,7 @@ import (
     "github.com/imdario/mergo"
     "io/ioutil"
     "log"
+    "html"
     "net/http"
     "os"
     "path/filepath"
@@ -31,13 +32,16 @@ func map_have (i map[string]interface{}, name string) bool {
     return false
 }
 
-func LoadJSON_file(filename string) map[string]interface{} {
+func LoadJSON_file(filename string, cmap string) map[string]interface{} {
     var jdata map[string]interface{}
     data, err := ioutil.ReadFile(filename)
     if err != nil {
             log.Fatal(err)
             return nil
         }
+    if(cmap != "") {
+        data = []byte("{\"" + cmap + "\":" + string(data) + "}")
+    }
     err = json.Unmarshal(data, &jdata)
     if err != nil {
             log.Fatal(err)
@@ -46,8 +50,11 @@ func LoadJSON_file(filename string) map[string]interface{} {
     return jdata
 }
 
-func LoadJSON_string(str string) map[string]interface{} {
+func LoadJSON_string(str string, cmap string) map[string]interface{} {
     var jdata map[string]interface{}
+    if(cmap != "") {
+        str = "{\"" + cmap + "\":" + str + "}"
+    }
     err := json.Unmarshal([]byte(str), &jdata)
     if err != nil {
             log.Fatal(err)
@@ -56,7 +63,7 @@ func LoadJSON_string(str string) map[string]interface{} {
     return jdata
 }
 
-func LoadJSON_url(url string) map[string]interface{} {
+func LoadJSON_url(url string, cmap string) map[string]interface{} {
     var jdata map[string]interface{}
     resp, err := http.Get(url)
     if err != nil {
@@ -73,6 +80,9 @@ func LoadJSON_url(url string) map[string]interface{} {
             log.Fatal(err)
             return nil
         }
+    if(cmap != "") {
+        body = []byte("{\"" + cmap + "\":" + string(body) + "}")
+    }
     err = json.Unmarshal(body, &jdata)
     if err != nil {
             log.Fatal(err)
@@ -121,12 +131,20 @@ func usage() {
     --uid {UID}         default owner (uid) for created files (int)
     --gid {GID}         default group (gid) for created files (int)
     --ofile {FILE}      execute last template and write result to file (also create path if not exists)
+    --jmap {STRING}     map next loaded json string/file/url to subject, empty string reset mapping
+    --print {ARG}       print argument (for debug)
+    --printconf         print all collected data (for debug)
+
+    Additional template funtions:
+      is_map {variable}                 return true if variable is map
+      map_have {variable} "string"      return true if variable have field "string"
 `)
 }
 
 func main() {
 
     var conf map[string]interface{}
+    var cmap string = ""
     funcMap := template.FuncMap {
         "is_map": is_map,
         "map_have": map_have,
@@ -145,6 +163,16 @@ func main() {
     for a := 1; a < len(os.Args); a += 1 {
         if(os.Args[a] == "--help") {
             usage()
+        } else if(os.Args[a] == "--print") {
+            a += 1
+            log.Println(os.Args[a])
+        } else if(os.Args[a] == "--printconf") {
+            jsonString, _ := json.MarshalIndent(conf," ","  ")
+            log.Println(string(jsonString))
+
+        } else if(os.Args[a] == "--jmap") {
+            a++
+            cmap=html.EscapeString(os.Args[a])
         } else if(os.Args[a] == "--tfile") {
             a++
             tpl := LoadTPL_file(os.Args[a])
@@ -157,20 +185,17 @@ func main() {
             check(err)
         } else if(os.Args[a] == "--jurl") {
             a += 1
-            conf1 := LoadJSON_url(os.Args[a])
+            conf1 := LoadJSON_url(os.Args[a], cmap)
             err = mergo.Merge(&conf, conf1)
             check(err)
         } else if(os.Args[a] == "--jstr") {
             a += 1
-            conf1 := LoadJSON_string(os.Args[a])
+            conf1 := LoadJSON_string(os.Args[a], cmap)
             err = mergo.Merge(&conf, conf1)
             check(err)
-        } else if(os.Args[a] == "--print") {
-            a += 1
-            log.Println(os.Args[a])
         } else if(os.Args[a] == "--jfile") {
             a += 1
-            conf1 := LoadJSON_file(os.Args[a])
+            conf1 := LoadJSON_file(os.Args[a], cmap)
             err = mergo.Merge(&conf, conf1)
             check(err)
         } else if(os.Args[a] == "--odp") {
