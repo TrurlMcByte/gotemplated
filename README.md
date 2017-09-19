@@ -15,7 +15,7 @@ CGO_ENABLED=0  go build -ldflags "-s"
 ```
 
 # manual
-all parametrs may be called multiple times and user in order of presense
+all parametrs may be called multiple times and used in order of presense
 ```
     --jurl {URL}        load and merge data from URL (JSON)
     --jfile {FILE}      load and merge data from file (JSON)
