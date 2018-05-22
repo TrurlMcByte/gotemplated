@@ -8,9 +8,11 @@ Generate config files (but not only) from templates (include url) and json data 
 ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped available from TravisCI builds on page https://github.com/TrurlMcByte/gotemplated/releases
 
 # build
+```
+go get github.com/TrurlMcByte/gotemplated
+```
 for static build
 ```
-go get github.com/imdario/mergo
 CGO_ENABLED=0  go build -ldflags "-s"
 ```
 
