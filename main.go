@@ -99,7 +99,7 @@ func LoadTPL_url(url string) string {
         }
     defer resp.Body.Close()
     if resp.StatusCode >= 400 {
-            log.Fatal(url, " return ", resp.Status)
+            log.Fatal(url, " return ", resp.Status, resp)
             return ""
     }
     body, err := ioutil.ReadAll(resp.Body)
@@ -145,6 +145,7 @@ func main() {
 
     var conf map[string]interface{}
     var cmap string = ""
+
     funcMap := template.FuncMap {
         "is_map": is_map,
         "map_have": map_have,
@@ -164,7 +165,7 @@ func main() {
         if(os.Args[a] == "--help") {
             usage()
         } else if(os.Args[a] == "--print") {
-            a += 1
+            a++
             log.Println(os.Args[a])
         } else if(os.Args[a] == "--printconf") {
             jsonString, _ := json.MarshalIndent(conf," ","  ")
