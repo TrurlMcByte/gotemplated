@@ -2,7 +2,7 @@ package main
 
 import (
     "encoding/json"
-    "github.com/imdario/mergo"
+    "dario.cat/mergo"
     "io/ioutil"
     "log"
     "html"

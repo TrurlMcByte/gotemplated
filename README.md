@@ -9,7 +9,7 @@ ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 
 # build
 ```
-go get github.com/TrurlMcByte/gotemplated
+go install -ldflags="-w -s" github.com/TrurlMcByte/gotemplated@latest
 ```
 for static build
 ```
