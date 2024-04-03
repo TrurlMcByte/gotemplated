@@ -32,6 +32,10 @@ func map_have (i map[string]interface{}, name string) bool {
     return false
 }
 
+func env (name string) string {
+    return os.Getenv(name);
+}
+
 func LoadJSON_file(filename string, cmap string) map[string]interface{} {
     var jdata map[string]interface{}
     data, err := ioutil.ReadFile(filename)
@@ -138,6 +142,7 @@ func usage() {
     Additional template funtions:
       is_map {variable}                 return true if variable is map
       map_have {variable} "string"      return true if variable have field "string"
+      env {variable}                    return environment variable as string
 `)
 }
 
@@ -149,6 +154,7 @@ func main() {
     funcMap := template.FuncMap {
         "is_map": is_map,
         "map_have": map_have,
+        "env": env,
     }
 
     t, err := template.New("config").Funcs(funcMap).Parse("")
