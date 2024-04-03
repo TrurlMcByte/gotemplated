@@ -36,6 +36,7 @@ all parametrs may be called multiple times and used in order of presense
     Additional template funtions:
       is_map {variable}                 return true if variable is map
       map_have {variable} "string"      return true if variable have field "string"
+      env {variable}                    return environment variable as string
 
 ```
 see also https://golang.org/pkg/text/template/ for templates
@@ -71,7 +72,8 @@ gotemplated.exe --jstr "{\"hostname\":\"myhost.example.org\"}" --tfile some.tpl 
 ```
 where ```some.tpl``` containts
 ```
-hostname = "{{ .hostname }}"
+hostname = "{{ .hostname }}";
+home = "{{ env "HOME" }}"
 ```
 in result in file ```some.conf``` will be
 ```
