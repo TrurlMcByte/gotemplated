@@ -9,11 +9,11 @@ ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 
 # build
 ```
-go install -ldflags="-w -s" github.com/TrurlMcByte/gotemplated@latest
+go install -gccgoflags="-w -s" github.com/TrurlMcByte/gotemplated@latest
 ```
 for static build
 ```
-CGO_ENABLED=0  go build -ldflags "-s"
+CGO_ENABLED=0  go build -gccgoflags "-s"
 ```
 
 # manual
