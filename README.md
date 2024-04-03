@@ -16,7 +16,7 @@ for static build
 CGO_ENABLED=0  go build -gccgoflags "-s"
 ```
 
-# manual
+# documentation
 all parametrs may be called multiple times and used in order of presense
 ```
     --jurl {URL}        load and merge data from URL (JSON)
@@ -37,10 +37,12 @@ all parametrs may be called multiple times and used in order of presense
       is_map {variable}                 return true if variable is map
       map_have {variable} "string"      return true if variable have field "string"
       env {variable}                    return environment variable as string
+      envdef {variable} {default}       return environment variable as string if not empty, overwise return default
 
 ```
 see also https://golang.org/pkg/text/template/ for templates
 
+I recommend to use "jq" or "yq" tools to prepare data
 
 # usage
 ```
@@ -73,7 +75,7 @@ gotemplated.exe --jstr "{\"hostname\":\"myhost.example.org\"}" --tfile some.tpl 
 where ```some.tpl``` containts
 ```
 hostname = "{{ .hostname }}";
-home = "{{ env "HOME" }}"
+home = "{{ envdef "HOME" "/none" }}"
 ```
 in result in file ```some.conf``` will be
 ```
