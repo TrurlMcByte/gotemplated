@@ -1,24 +1,31 @@
 [![Build Status](https://travis-ci.org/TrurlMcByte/gotemplated.svg?branch=master)](https://travis-ci.org/TrurlMcByte/gotemplated)
 
 # gotemplated
+
 Go based "templated" tools
 Generate config files (but not only) from templates (include url) and json data sources (etcd, firebase, webdis, etc...)
 
 # get
-ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped available from TravisCI builds on page https://github.com/TrurlMcByte/gotemplated/releases
+
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped available from TravisCI builds on page <https://github.com/TrurlMcByte/gotemplated/releases>
 
 # build
-```
+
+```bash
 go install -gccgoflags="-w -s" github.com/TrurlMcByte/gotemplated@latest
 ```
+
 for static build
-```
+
+```bash
 CGO_ENABLED=0  go build -gccgoflags "-s"
 ```
 
 # documentation
+
 all parametrs may be called multiple times and used in order of presense
-```
+
+```text
     --jurl {URL}        load and merge data from URL (JSON)
     --jfile {FILE}      load and merge data from file (JSON)
     --jstr {STRING}     load and merge data from string (JSON)
@@ -40,12 +47,14 @@ all parametrs may be called multiple times and used in order of presense
       envdef {variable} {default}       return environment variable as string if not empty, overwise return default
 
 ```
-see also https://golang.org/pkg/text/template/ for templates
+
+see also <https://golang.org/pkg/text/template/> for templates
 
 I recommend to use "jq" or "yq" tools to prepare data
 
 # usage
-```
+
+```bash
 ./gotemplated \
     --print "Load data from url" \
     --jurl https://myconf.firebaseio.com/conf/test.json \
@@ -69,17 +78,19 @@ I recommend to use "jq" or "yq" tools to prepare data
 
 # example
 
-```
+```bash
 gotemplated.exe --jstr "{\"hostname\":\"myhost.example.org\"}" --tfile some.tpl --ofile some.conf
 ```
+
 where ```some.tpl``` containts
-```
+
+```text
 hostname = "{{ .hostname }}";
 home = "{{ envdef "HOME" "/none" }}"
 ```
+
 in result in file ```some.conf``` will be
-```
+
+```ini
 hostname = "myhost.example.org"
 ```
-
-
